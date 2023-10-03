@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Producer Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Producer Dashboard</h1>
+        <nav>
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="playlist-builder.html" class="nav-button">Playlist Builder</a>
+            <a href="event-promotions.html" class="nav-button">Event Promotions</a>
+        </nav>
+        <input type="text" id="search-bar" placeholder="Search...">
+    </header>
+    <main>
+        <div class="upcoming-events">
+            <h2>Upcoming Events</h2>
+            <div class="events-container">
+                <div class="example-event">
+                    <img src="img/img-3.jpg" alt="Event Image">
+                    <div class="event-details">
+                        <h3>Friday Night Mash Up</h3>
+                        <p>Date: November 5, 2023</p>
+                        <p>Time: 9:00 PM - 2:00 AM</p>
+                    </div>
+                    <figcaption>Image source: Event Promo</figcaption>
+                    <button>View Details</button>
+                </div>
+            </div>
+        </div>
+        <div class="playlist-builder">
+            <h2>Playlist Builder</h2>
+            <div class="playlist-actions">
+                <button>Clear Playlist</button>
+                <button>Save Playlist</button>
+            </div>
+            <ul class="drag-drop-playlist">
+                <li class="playlist-item">
+                    <div class="track-image">
+                        <img src="img/img-1.jfif" alt="Track Image">
+                    </div>
+                    <div class="track-details">
+                        <p>Track 1: Rock Your Body</p>
+                    </div>
+                </li>
+                <li class="playlist-item">
+                    <div class="track-image">
+                        <img src="img/img-2.jpg" alt="Track Image">
+                    </div>
+                    <div class="track-details">
+                        <p>Track 2: Blinding Lights</p>
+                    </div>
+                </li>
+            </ul>
+        </div>        
+        <div class="event-promotions">
+            <h2>Event Promotions</h2>
+            <div class="promotion-actions">
+                <button>View Promotions</button>
+                <button>Create Promotion</button>
+            </div>
+            <div class="custom-promotion-builder">
+                <div class="promotion-item">
+                    <img src="img/img-4.png" alt="Promotion Image">
+                    <p>Promotion 1: Event Announcement</p>
+                </div>
+                <div class="promotion-item">
+                    <img src="img/img-5.png" alt="Promotion Image">
+                    <p>Promotion 2: Artist Spotlight</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
