@@ -17,24 +17,108 @@
         <input type="text" id="search-bar" placeholder="Search...">
     </header>
     <main>
+        <!-- Inline Event Handler Approach -->
+        <button onclick="alert('Button was clicked!')">Click Me (Inline Event Handler)</button>
+
         <div class="upcoming-events">
             <h2>Upcoming Events</h2>
             <div class="events-container">
-                <div class="example-event">
+                <div class="example-event" style="background-color: #f0f0f0;">
                     <img src="img/img-3.jpg" alt="Event Image">
                     <div class="event-details">
-                        <h3>Friday Night Mash Up</h3>
+                        <h3 id="event-title">Friday Night Mash Up</h3>
                         <p>Date: November 5, 2023</p>
                         <p>Time: 9:00 PM - 2:00 AM</p>
                     </div>
                     <figcaption>Image source: Event Promo</figcaption>
-                    <button>View Details</button>
+                    <button id="view-details-button">View Details (Event Listener)</button>
                 </div>
             </div>
         </div>
+        <form id="myForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <input type="submit" value="Submit">
+        </form>
+        <script>
+            // Event Listener Approach
+            document.addEventListener('DOMContentLoaded', function () {
+                const viewDetailsButton = document.getElementById('view-details-button');
+                viewDetailsButton.addEventListener('click', () => {
+                    alert('View Details button was clicked (Event Listener)');
+                });
+            });
+
+            // Validating Forms (Form Submission)
+            const searchInput = document.getElementById('search-bar');
+            searchInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    const searchValue = searchInput.value.trim();
+                    if (!searchValue) {
+                        alert('Please enter a search term.');
+                        event.preventDefault();
+                    }
+                }
+            });
+            
+            // Event Types (Keydown Event)
+            window.addEventListener('keydown', (event) => {
+                alert(`Keydown Event: Key pressed - ${event.key}`);
+            });
+            
+            function validateForm() {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+
+                if (nameInput.value.trim() === "") {
+                    alert("Name must be filled out");
+                    return false;
+                }
+
+                const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailFormat.test(emailInput.value)) {
+                    alert("Invalid email format");
+                    return false;
+                }
+
+                alert("Form submitted successfully");
+                return true;
+            }
+            
+            // Modifying a DOM Element (Change event title)
+            const eventTitle = document.getElementById('event-title');
+            eventTitle.textContent = 'Saturday Dance Party';
+        
+            // Properties (Custom Object)
+            const producer = {
+                name: "Alex",
+                showName: "Nightly Thrills",
+                yearsExperience: 5
+            };
+        
+            // Accessing Object Properties
+            console.log(producer.name); // Outputs: "Alex"
+        
+            // Modifying Object Properties
+            producer.yearsExperience = 6;
+        
+            // Adding New Properties
+            producer.timeSlot = "8am - 10am";
+            console.log(producer);
+        
+            // Window Object (Alert)
+            window.alert("This is an alert from the Window object.");
+        </script>
+
         <div class="playlist-builder">
             <h2>Playlist Builder</h2>
             <div class="playlist-actions">
+                <button>Add Track</button>
+                <button>Remove Track</button>
                 <button>Clear Playlist</button>
                 <button>Save Playlist</button>
             </div>
@@ -57,6 +141,7 @@
                 </li>
             </ul>
         </div>        
+
         <div class="event-promotions">
             <h2>Event Promotions</h2>
             <div class="promotion-actions">
@@ -75,5 +160,33 @@
             </div>
         </div>
     </main>
+
+    <script>
+        // JavaScript Fundamentals
+        const eventTitle = document.getElementById('event-title');
+        eventTitle.textContent = 'Saturday Dance Party';        
+        const isSunny = true;
+        const isWarm = true;
+        
+        if (isSunny && isWarm) {  // Using Logical Operators
+            eventTitle.textContent = 'Sunny Warm Party';
+        }
+        else if (isSunny && !isWarm) {
+            eventTitle.textContent = 'Winter Day Party'
+        }
+        else {
+            eventTitle.textContent = 'Party';
+        }
+        
+        for (let i = 0; i < 5; i++) {  // Using a Loop
+            console.log("Upcoming Event #" + i);
+        }
+        
+        function customizeEventTitle(title) {
+            eventTitle.textContent = title;
+        }
+        
+        customizeEventTitle("Special Event");  // Calling a Function
+    </script>
 </body>
 </html>
