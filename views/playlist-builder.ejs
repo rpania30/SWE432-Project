@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <header>
+        <h1><%= page %></h1>
+        <nav>
+            <a href="/" class="nav-button">Home</a>
+            <a href="/playlist-builder" class="nav-button">Playlist Builder</a>
+            <a href="/event-promotions" class="nav-button">Event Promotions</a>
+        </nav>
+        <input type="text" id="search-bar" placeholder="Search...">
+    </header>
+    <main>
+        <div class="playlist-actions">
+            <button id="add-track-button">Add Track</button>
+            <button id="remove-track-button">Remove Track</button>
+            <button id="clear-playlist-button">Clear Playlist</button>
+            <button id="save-playlist-button">Save Playlist</button>
+        </div>
+        <ul class="drag-drop-playlist" id="playlist">
+            <div class="playlist-item">
+                <img src="img/img-1.jfif" alt="Track Image 1" class="square-image">
+                <p>Track 1: Song Title</p>
+            </div>
+            <div class="playlist-item">
+                <img src="img/img-2.jpg" alt="Track Image 2" class="square-image">
+                <p>Track 2: Song Title</p>
+            </div>
+        </ul>
+    </main>
+    <script>
+        // Functionality for "Add Track" button
+        const addTrackButton = document.getElementById('add-track-button');
+        addTrackButton.addEventListener('click', () => {
+            // Create a new track element and append it to the playlist
+            const playlist = document.getElementById('playlist');
+            const newTrack = document.createElement('li');
+            newTrack.textContent = 'New Track: Song Title';
+            playlist.appendChild(newTrack);
+        });
+
+        // Functionality for "Remove Track" button
+        const removeTrackButton = document.getElementById('remove-track-button');
+        removeTrackButton.addEventListener('click', () => {
+            // Remove the last track from the playlist
+            const playlist = document.getElementById('playlist');
+            const lastTrack = playlist.lastChild;
+            if (lastTrack) {
+                playlist.removeChild(lastTrack);
+            }
+        });
+
+        // Functionality for "Clear Playlist" button
+        const clearPlaylistButton = document.getElementById('clear-playlist-button');
+        clearPlaylistButton.addEventListener('click', () => {
+            // Clear all tracks from the playlist
+            const playlist = document.getElementById('playlist');
+            playlist.innerHTML = '';
+        });
+
+        // Functionality for "Save Playlist" button (for demonstration purposes)
+        const savePlaylistButton = document.getElementById('save-playlist-button');
+        savePlaylistButton.addEventListener('click', () => {
+            // Get the track list and display it (for demonstration)
+            const playlist = document.getElementById('playlist');
+            const tracks = Array.from(playlist.children).map(track => track.textContent);
+            alert('Playlist saved:\n' + tracks.join('\n'));
+        });
+    </script>
+</body>
+</html>
