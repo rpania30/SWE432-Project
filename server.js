@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
+
+app.use(cors());
 // Set the view engine as EJS and specify the 'views' directory
 app.set('view engine', 'ejs');
 app.set('views', 'views');
