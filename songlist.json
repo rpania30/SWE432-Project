@@ -1,0 +1,99 @@
+{
+    "songs": [
+        {
+            "title": "Shape of You",
+            "artist": "Ed Sheeran",
+            "genre": "Pop",
+            "year": 2017
+        },
+        {
+            "title": "Blinding Lights",
+            "artist": "The Weeknd",
+            "genre": "R&B",
+            "year": 2019
+        },
+        {
+            "title": "Uptown Funk",
+            "artist": "Mark Ronson",
+            "genre": "Funk",
+            "year": 2014,
+            "featuredArtist": "Bruno Mars"
+        },
+        {
+            "title": "Old Town Road",
+            "artist": "Lil Nas X",
+            "genre": "Country Rap",
+            "year": 2019,
+            "featuredArtist": "Billy Ray Cyrus"
+        },
+        {
+            "title": "Someone You Loved",
+            "artist": "Lewis Capaldi",
+            "genre": "Pop",
+            "year": 2018
+        },
+        {
+            "title": "Despacito",
+            "artist": "Luis Fonsi",
+            "genre": "Reggaeton",
+            "year": 2017,
+            "featuredArtist": "Daddy Yankee"
+        },
+        {
+            "title": "Dance Monkey",
+            "artist": "Tones and I",
+            "genre": "Electropop",
+            "year": 2019
+        },
+        {
+            "title": "Closer",
+            "artist": "The Chainsmokers",
+            "genre": "EDM",
+            "year": 2016,
+            "featuredArtist": "Halsey"
+        },
+        {
+            "title": "Happy",
+            "artist": "Pharrell Williams",
+            "genre": "Pop",
+            "year": 2013
+        },
+        {
+            "title": "Sicko Mode",
+            "artist": "Travis Scott",
+            "genre": "Hip Hop",
+            "year": 2018
+        },
+        {
+            "title": "Bad Guy",
+            "artist": "Billie Eilish",
+            "genre": "Pop",
+            "year": 2019
+        },
+        {
+            "title": "Watermelon Sugar",
+            "artist": "Harry Styles",
+            "genre": "Pop",
+            "year": 2019
+        },
+        {
+            "title": "Can't Stop the Feeling!",
+            "artist": "Justin Timberlake",
+            "genre": "Pop",
+            "year": 2016
+        },
+        {
+            "title": "Radioactive",
+            "artist": "Imagine Dragons",
+            "genre": "Rock",
+            "year": 2012
+        },
+        {
+            "title": "WAP",
+            "artist": "Cardi B",
+            "genre": "Hip Hop",
+            "year": 2020,
+            "featuredArtist": "Megan Thee Stallion"
+        }
+    ]
+}

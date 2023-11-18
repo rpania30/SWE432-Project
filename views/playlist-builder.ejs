@@ -18,132 +18,83 @@
     </header>
     <main>
         <div class="playlist-actions">
-            <button id="add-track-button">Add Track</button>
-            <button id="remove-track-button">Remove Track</button>
-            <button id="clear-playlist-button">Clear Playlist</button>
-            <button id="save-playlist-button">Save Playlist</button>
+            <!-- Form for adding new tracks -->
+            <form id="addSongForm" action="/addSong" method="post">
+                <input type="text" id="name" name="name" placeholder="Song Name">
+                <input type="text" id="artist" name="artist" placeholder="Artist">
+                <input type="text" id="genre" name="genre" placeholder="Genre">
+                <input type="number" id="year" name="year" placeholder="Year">
+                <button type="submit">Add Track</button>
+                <button type="button" onclick="clearPlaylist()">Clear Entire Playlist</button>
+            </form>
         </div>
+
+        <!-- Displaying playlist tracks with structured layout -->
         <ul class="drag-drop-playlist" id="playlist">
-            <div class="playlist-item">
-                <img src="img/img-1.jfif" alt="Track Image 1" class="square-image">
-                <p>Track 1: Song Title</p>
-            </div>
-            <div class="playlist-item">
-                <img src="img/img-2.jpg" alt="Track Image 2" class="square-image">
-                <p>Track 2: Song Title</p>
-            </div>
+            <% songs.forEach(song => { %>
+                <li id="song-<%= song._id %>" class="song-item">
+                    <div class="song-details">
+                        <div class="song-name"><strong>Name:</strong> <%= song.name %></div>
+                        <div class="song-artist"><strong>Artist:</strong> <%= song.artist %></div>
+                        <div class="song-genre"><strong>Genre:</strong> <%= song.genre %></div>
+                        <div class="song-year"><strong>Year:</strong> <%= song.year %></div>
+                    </div>
+                    <div class="song-actions">
+                        <button onclick="deleteSong('<%= song._id %>')" class="delete-button">Delete</button>
+                    </div>
+                </li>
+            <% }); %>
         </ul>
+
+        <!-- Displaying Songs from SongList -->
+        <h2>SongList Songs</h2>
+        <ul>
+            <% songlist.forEach(song => { %>
+                <li>
+                    <% if (song.title && song.artist) { %>
+                        <%= song.title %> - <%= song.artist %>
+                    <% } %>
+                    <% if (song.genre) { %>
+                        <div><strong>Genre:</strong> <%= song.genre %></div>
+                    <% } %>
+                    <% if (song.year) { %>
+                        <div><strong>Year:</strong> <%= song.year %></div>
+                    <% } %>
+                    <% if (song.featuredArtist) { %>
+                        <div><strong>Featured Artist:</strong> <%= song.featuredArtist %></div>
+                    <% } %>
+                </li>
+            <% }); %>            
+        </ul>         
     </main>
+
     <script>
-        // Functionality for "Add Track" button
-        const addTrackButton = document.getElementById('add-track-button');
-        // addTrackButton.addEventListener('click', () => {
-        //     // Create a new track element and append it to the playlist
-        //     const playlist = document.getElementById('playlist');
-        //     const newTrack = document.createElement('li');
-        //     newTrack.textContent = 'New Track: Song Title';
-        //     playlist.appendChild(newTrack);
-        // });
-
-
-
-        const { MongoClient } = require('mongodb');
-
-        // MongoDB connection URL and Database Name
-        const url = 'mongodb://localhost:27017';
-        const dbName = 'musicStationDB';
-        const client = new MongoClient(url);
-
-        async function addtTrack(trackTitle) {
-            try {
-                // Connect to the MongoDB client
-                await client.connect();
-                alert("Connected to MongoDB server");
-
-                // Select the database and collection
-                const db = client.db(dbName);
-                const collection = db.collection('tracks');
-
-                // Insert a new track
-                const result = await collection.insertOne({ title: trackTitle });
-                console.log("Track added:", result);
-                addTrack();
-
-                // Close the connection
-                await client.close();
-                console.log("Connection closed");
-                return result;
-            } catch (err) {
-                console.error('Error adding track:', err);
-                // Close the connection on error
-                await client.close();
-                throw err; // Rethrow the error for the caller to handle
-            }
+        function deleteSong(songId) {
+            fetch('/deleteSong', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: songId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('song-' + songId).remove();
+            })
+            .catch(error => console.error('Error:', error));
         }
 
-
-
-        function addTrack(){
-            const playlistItem = document.createElement('div');
-            playlistItem.className = 'playlist-item';
-
-            // Create an img element for the track image
-            const trackImage = document.createElement('img');
-            trackImage.src = 'img/img-2.jpg';
-            trackImage.alt = 'Track Image 2';
-            trackImage.className = 'square-image';
-
-            // Create a paragraph element for the track title
-            const trackTitle = document.createElement('p');
-            trackTitle.textContent = 'Track 2: Song Title';
-
-            // Append the img and p elements to the div
-            playlistItem.appendChild(trackImage);
-            playlistItem.appendChild(trackTitle);
-            document.getElementById("playlist").appendChild(playlistItem);
-        }
-        addTrackButton.addEventListener('click', () => {
-            // fetch('http://localhost:4000/addTrack', {
-            //     method: 'POST'
-            // })
-            // .then(response => response.text())
-            // .then(data => {
-                //console.log(data); // Or update your UI accordingly
-            addTrack("yo");
-            // })
-            // .catch((error) => {
-            //     console.error('Error:', error);
-            // });
-        });
-
-
-        // Functionality for "Remove Track" button
-        const removeTrackButton = document.getElementById('remove-track-button');
-        removeTrackButton.addEventListener('click', () => {
-            // Remove the last track from the playlist
-            const playlist = document.getElementById('playlist');
-            const lastTrack = playlist.lastChild;
-            if (lastTrack) {
-                playlist.removeChild(lastTrack);
-            }
-        });
-
-        // Functionality for "Clear Playlist" button
-        const clearPlaylistButton = document.getElementById('clear-playlist-button');
-        clearPlaylistButton.addEventListener('click', () => {
-            // Clear all tracks from the playlist
+        function clearPlaylist() {
+            // Clear displayed songs from the list on the webpage
             const playlist = document.getElementById('playlist');
             playlist.innerHTML = '';
-        });
 
-        // Functionality for "Save Playlist" button (for demonstration purposes)
-        const savePlaylistButton = document.getElementById('save-playlist-button');
-        savePlaylistButton.addEventListener('click', () => {
-            // Get the track list and display it (for demonstration)
-            const playlist = document.getElementById('playlist');
-            const tracks = Array.from(playlist.children).map(track => track.textContent);
-            alert('Playlist saved:\n' + tracks.join('\n'));
-        });
+            // Send a request to the server to clear the playlist from the database
+            fetch('/clearPlaylist', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log(data.message))
+                .catch(error => console.error('Error:', error));
+        }
     </script>
 </body>
 </html>
