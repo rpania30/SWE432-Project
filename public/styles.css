@@ -222,3 +222,22 @@ figure {
 .delete-button:hover {
     background-color: darkred;
 }
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1vh;
+    margin-top: 40vh;
+}
+
+.login-form .form-group {
+    margin-bottom: 15px;
+    padding-top: 1vh;
+}
+
+.songlist-title {
+    margin-bottom: 20px;
+}

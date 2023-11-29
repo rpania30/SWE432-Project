@@ -17,11 +17,13 @@
         <input type="text" id="search-bar" placeholder="Search...">
     </header>
     <main>
+        <h2 class = "songlist-title">SongList Songs</h2>
+        
         <div class="playlist-actions">
             <!-- Form for adding new tracks -->
             <form id="addSongForm" action="/addSong" method="post">
-                <input type="text" id="name" name="name" placeholder="Song Name">
-                <input type="text" id="artist" name="artist" placeholder="Artist">
+                <input type="text" id="name" name="name" placeholder="Song Name" required>
+                <input type="text" id="artist" name="artist" placeholder="Artist" required>
                 <input type="text" id="genre" name="genre" placeholder="Genre">
                 <input type="number" id="year" name="year" placeholder="Year">
                 <button type="submit">Add Track</button>
@@ -47,7 +49,6 @@
         </ul>
 
         <!-- Displaying Songs from SongList -->
-        <h2>SongList Songs</h2>
         <ul>
             <% songlist.forEach(song => { %>
                 <li>
