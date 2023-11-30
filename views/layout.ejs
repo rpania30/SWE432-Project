@@ -3,20 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <title><%= page %></title>
+    <title><%= pageTitle %></title>
+    <style>
+        /* Paste your new CSS styling here */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em 2em;
+            background-color: #007BFF;
+            color: white;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 2em;
+            background-color: #ffffff;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        /* ... include all other styles you provided ... */
+    </style>
 </head>
 <body>
-    <header>
-        <title><%= pageTitle %></title>
+    <div class="navbar">
+        <h1><%= pageTitle %></h1>
         <nav>
             <a href="/" class="nav-button">Home</a>
             <a href="/playlist-builder" class="nav-button">Playlist Builder</a>
             <a href="/event-promotions" class="nav-button">Event Promotions</a>
         </nav>
         <input type="text" id="search-bar" placeholder="Search...">
-    </header>
-    <main>
-    </main>
+    </div>
 </body>
 </html>

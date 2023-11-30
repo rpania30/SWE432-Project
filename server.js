@@ -61,7 +61,7 @@ app.get('/playlist-builder', async (req, res) => {
     try {
         const songs = await Track.find({});
         const songlist = await SongList.find({});
-        res.render('playlist-builder', { page: 'Playlist Builder', songs: songs, songlist: songlist, pageTitle: 'Playlist Builder' });
+        res.render('playlist-builder', { page: 'Producer Dashboard', songs: songs, songlist: songlist, pageTitle: 'Producer Dashboard' });
     } catch (err) {
         res.status(500).send('Error fetching songs');
     }
